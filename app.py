@@ -8,14 +8,10 @@ import sys
 from collections import defaultdict
 from io import StringIO
 from PIL import Image
-os.chdir("models/research")
-print(os.path.dirname(os.path.realpath(__file__)))
-os.system("protoc object_detection/protos/*.proto --python_out=.")
-os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
-from object_detection.utils import label_map_util
+import label_map_util
 
-from object_detection.utils import visualization_utils as vis_util
+import visualization_utils as vis_util
 
 import tensorflow as tf
 import numpy as np
