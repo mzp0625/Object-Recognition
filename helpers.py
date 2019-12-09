@@ -12,8 +12,8 @@ def load_image_into_numpy_array(image):
 
 def run_inference_for_single_image(image, graph):
     with graph.as_default():
-        with tf.Session() as sess:
-            ops = tf.get_default_graph().get_operations()
+        with tf.compat.v1.Session() as sess:
+            ops = tf.compat.v1.get_default_graph().get_operations()
             all_tensor_names = {
                 output.name for op in ops for output in op.outputs}
             tensor_dict = {}
@@ -23,7 +23,7 @@ def run_inference_for_single_image(image, graph):
             ]:
                 tensor_name = key + ':0'
                 if tensor_name in all_tensor_names:
-                    tensor_dict[key] = tf.get_default_graph().get_tensor_by_name(
+                    tensor_dict[key] = tf.compat.v1.get_default_graph().get_tensor_by_name(
                         tensor_name)
             if 'detection_masks' in tensor_dict:
                 detection_boxes = tf.squeeze(
@@ -42,7 +42,7 @@ def run_inference_for_single_image(image, graph):
                     tf.greater(detection_masks_reframed, 0.5), tf.uint8)
                 tensor_dict['detection_masks'] = tf.expand_dims(
                     detection_masks_reframed, 0)
-            image_tensor = tf.get_default_graph().get_tensor_by_name('image_tensor:0')
+            image_tensor = tf.compat.v1.get_default_graph().get_tensor_by_name('image_tensor:0')
 
             output_dict = sess.run(tensor_dict,
                                    feed_dict={image_tensor: np.expand_dims(image, 0)})
