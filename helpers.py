@@ -1,6 +1,6 @@
 import numpy as np
 import tensorflow as tf
-from object_detection.utils import ops as utils_ops
+import ops as utils_ops
 
 
 def load_image_into_numpy_array(image):
