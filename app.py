@@ -103,5 +103,3 @@ def upload():
     return render_template("complete.html", value=output_boxes)
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
