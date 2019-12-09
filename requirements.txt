@@ -21,7 +21,6 @@ entrypoints==0.3
 enum34==1.1.6
 Flask==1.1.1
 funcsigs==1.0.2
-futures==3.3.0
 gast==0.2.2
 google-auth==1.7.2
 google-auth-oauthlib==0.4.1
